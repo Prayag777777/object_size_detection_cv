@@ -1,5 +1,5 @@
 
-
+import os
 from flask import Flask, render_template, Response, request, redirect, url_for
 import cv2
 import numpy as np
@@ -99,4 +99,6 @@ def video_feed():
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Use the PORT environment variable or default to 5000
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
